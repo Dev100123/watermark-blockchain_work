@@ -90,7 +90,7 @@ if st.session_state.is_logged_in:
     product_search()
 
 else:
-    st.title('  Welcome to :violet[Checking Authentication Video Watermark]')
+    st.title('Welcome to :violet[Media Integrity]')
     # st.markdown(
     #  '📦 Welcome to <span style="color: violet; font-size: 30px;">Blockchain Watermark Checking</span>',
     #  unsafe_allow_html=True
