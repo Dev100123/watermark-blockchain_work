@@ -1,6 +1,6 @@
 import streamlit as st
 from blockchain.blockchain import get_all_products
-from web.utils import display_product
+from web.utils import display_product, display_model
 from web.video_hash import hash_video_file
 from web.model import build_model, predict_video_class
 
@@ -73,7 +73,7 @@ def product_search():
         st.markdown("</div>", unsafe_allow_html=True)
 
     # Main content
-    st.title(':violet[Blockchain] Video Watermark Originality Check')
+    st.title(':violet[Blockchain] Media Integrity Check')
 
     # File uploader for video
     uploaded_file = st.file_uploader("Upload a video file", type=["mp4", "avi", "mov", "mkv"])
@@ -101,9 +101,11 @@ def product_search():
                 model = build_model()
                 model.load_weights(r".\model\watermark_video_model_-6.h5")
                 pred_class, pred_prob = predict_video_class(uploaded_file, model)
-                if pred_prob >= 0.9:
-                    st.success(f"✅ This video has a **{pred_class}**.")
+                if pred_prob > 0.5:
+                    #st.success(f"✅ This video has a **{pred_class}**.")
+                    display_model(f"💧 This video is verified as {pred_class}")
                 else:
-                    st.success(f"ℹ️ This video is likely **{pred_class}**.")
+                    #original = st.success(f"ℹ️ This video is likely **{pred_class}**.")
+                    display_model(f"🎥 This video looks {pred_class} and Authentic")
 
 
