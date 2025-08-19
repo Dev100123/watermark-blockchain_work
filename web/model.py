@@ -71,7 +71,7 @@ def predict_video_class(uploaded_file, model):
                                     frame_step=CFG.frame_step)
     frames = np.expand_dims(frames, axis=0)
     pred_prob = model.predict(frames)[0][0]
-    pred_class = CFG.classes[int(pred_prob >= 0.9)]
+    pred_class = CFG.classes[int(pred_prob > 0.5)]
     return pred_class, pred_prob
 
 
