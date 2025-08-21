@@ -99,7 +99,7 @@ def product_search():
             if st.button("Check Video"):
                 # Run watermark detection
                 model = build_model()
-                model.load_weights(r".\model\watermark_video_model_-6.h5")
+                model.load_weights(r".\model\watermark_video_model_all.h5")
                 pred_class, pred_prob = predict_video_class(uploaded_file, model)
                 if pred_prob > 0.5:
                     #st.success(f"✅ This video has a **{pred_class}**.")
